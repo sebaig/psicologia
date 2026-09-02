@@ -1,0 +1,6 @@
+{
+  "name": "Quiz de Psicopatología Clínica",
+  "description": "Simulador diagnóstico y monografías clínicas en psicopatología: evaluación razonada DSM-5-TR / CIE-11, guías de diagnóstico diferencial, marco legal, política de privacidad y descargo médico.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
