@@ -1,5 +1,5 @@
 import React from 'react';
-import { BookOpen, RefreshCw, Brain, CheckCircle2, FileCheck, BookCheck, ShieldCheck, Sparkles } from 'lucide-react';
+import { BookOpen, RefreshCw, Brain, CheckCircle2, FileCheck, BookCheck, ShieldCheck, Sparkles, Sun, Moon } from 'lucide-react';
 import { CategoryId } from '../types';
 import { CATEGORIES_CONFIG } from '../data/questions';
 
@@ -16,6 +16,8 @@ interface HeaderProps {
   totalQuestions: number;
   correctAnswersCount: number;
   isCompleted: boolean;
+  isDarkMode: boolean;
+  onToggleDarkMode: () => void;
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -29,6 +31,8 @@ export const Header: React.FC<HeaderProps> = ({
   totalQuestions,
   correctAnswersCount,
   isCompleted,
+  isDarkMode,
+  onToggleDarkMode,
 }) => {
   const progressPercent = totalQuestions > 0 ? Math.round((totalAnswered / totalQuestions) * 100) : 0;
 
@@ -105,6 +109,13 @@ export const Header: React.FC<HeaderProps> = ({
 
           {/* Right Header: Progress Bar & Actions */}
           <div className="flex items-center gap-2 sm:gap-4">
+            <button
+              onClick={onToggleDarkMode}
+              className="p-2 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-600 transition-colors cursor-pointer"
+              aria-label="Toggle dark mode"
+            >
+              {isDarkMode ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
+            </button>
             {/* General Progress (Visible only in quiz mode or as condensed indicator) */}
             {activeView === 'quiz' && (
               <div className="hidden sm:flex flex-col items-end">

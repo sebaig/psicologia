@@ -25,7 +25,9 @@ import {
   CheckCircle2, 
   ArrowRight,
   BookCheck,
-  Stethoscope
+  Stethoscope,
+  Sun,
+  Moon
 } from 'lucide-react';
 
 const BOOKMARKS_STORAGE_KEY = 'psico_quiz_bookmarks_v1';
@@ -43,6 +45,24 @@ export default function App() {
   const [isLegalOpen, setIsLegalOpen] = useState<boolean>(false);
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
   const [isAboutOpen, setIsAboutOpen] = useState<boolean>(false);
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
+    if (typeof window !== 'undefined') {
+      return localStorage.getItem('theme') === 'dark';
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    if (isDarkMode) {
+      document.documentElement.classList.add('dark');
+      localStorage.setItem('theme', 'dark');
+    } else {
+      document.documentElement.classList.remove('dark');
+      localStorage.setItem('theme', 'light');
+    }
+  }, [isDarkMode]);
+
+  const toggleDarkMode = () => setIsDarkMode(!isDarkMode);
 
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
     try {
@@ -209,6 +229,8 @@ export default function App() {
         totalQuestions={activeQuestions.length}
         correctAnswersCount={correctCount}
         isCompleted={isCompleted}
+        isDarkMode={isDarkMode}
+        onToggleDarkMode={toggleDarkMode}
       />
 
       {/* Main Workspace */}
