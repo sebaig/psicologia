@@ -37,7 +37,7 @@ export const Header: React.FC<HeaderProps> = ({
   const progressPercent = totalQuestions > 0 ? Math.round((totalAnswered / totalQuestions) * 100) : 0;
 
   return (
-    <header className="bg-white border-b border-slate-200 shadow-xs sticky top-0 z-30">
+    <header className="bg-white dark:bg-slate-900 border-b border-slate-200 dark:border-slate-800 shadow-xs sticky top-0 z-30">
       <div className="max-w-7xl mx-auto px-4 sm:px-8">
         {/* Main Header Bar */}
         <div className="h-16 flex items-center justify-between gap-4">
@@ -53,14 +53,14 @@ export const Header: React.FC<HeaderProps> = ({
               </div>
               <div>
                 <div className="flex items-center gap-2">
-                  <h1 className="text-base sm:text-lg font-semibold tracking-tight text-slate-900 leading-tight">
+                  <h1 className="text-base sm:text-lg font-semibold tracking-tight text-slate-900 dark:text-slate-100 leading-tight">
                     Módulo de Psicopatología Clínica
                   </h1>
-                  <span className="hidden md:inline-block px-2 py-0.5 rounded bg-indigo-50 text-indigo-700 text-[10px] font-bold uppercase tracking-wider border border-indigo-100">
+                  <span className="hidden md:inline-block px-2 py-0.5 rounded bg-indigo-50 dark:bg-indigo-900 text-indigo-700 dark:text-indigo-200 text-[10px] font-bold uppercase tracking-wider border border-indigo-100 dark:border-indigo-800">
                     DSM-5-TR / CIE-11
                   </span>
                 </div>
-                <p className="text-[11px] text-slate-500 hidden sm:block">
+                <p className="text-[11px] text-slate-500 dark:text-slate-400 hidden sm:block">
                   Evaluación diagnóstica, artículos clínicos y análisis diferencial
                 </p>
               </div>

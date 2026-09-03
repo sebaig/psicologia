@@ -216,7 +216,7 @@ export default function App() {
   const categoryConfig = CATEGORIES_CONFIG.find((c) => c.id === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-900 flex flex-col font-sans">
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-950 text-slate-900 dark:text-slate-100 flex flex-col font-sans">
       {/* Top Header Bar */}
       <Header
         activeView={activeView}
@@ -348,7 +348,7 @@ export default function App() {
       </main>
 
       {/* Comprehensive Academic & Legal Footer */}
-      <footer className="bg-slate-900 text-slate-400 mt-auto border-t border-slate-800">
+      <footer className="bg-slate-900 dark:bg-black text-slate-400 mt-auto border-t border-slate-800">
         <div className="max-w-7xl mx-auto px-4 sm:px-8 py-10">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8 text-xs leading-relaxed">
             {/* Column 1: Identity & Scientific Rigor */}

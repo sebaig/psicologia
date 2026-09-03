@@ -34,12 +34,12 @@ export const FlashcardsView: React.FC = () => {
             style={{ transformStyle: 'preserve-3d' }}
           >
             {/* Front */}
-            <div className="absolute w-full h-full bg-white rounded-2xl shadow-xl border border-slate-200 p-8 flex flex-col items-center justify-center backface-hidden" style={{ backfaceVisibility: 'hidden' }}>
-              <span className="text-xs font-bold uppercase tracking-widest text-indigo-500 mb-4">{currentCard.title}</span>
-              <p className="text-lg text-slate-800 text-center leading-relaxed font-medium">
+            <div className="absolute w-full h-full bg-white dark:bg-slate-900 rounded-2xl shadow-xl border border-slate-200 dark:border-slate-800 p-8 flex flex-col items-center justify-center backface-hidden" style={{ backfaceVisibility: 'hidden' }}>
+              <span className="text-xs font-bold uppercase tracking-widest text-indigo-500 dark:text-indigo-400 mb-4">{currentCard.title}</span>
+              <p className="text-lg text-slate-800 dark:text-slate-100 text-center leading-relaxed font-medium">
                 {currentCard.clinicalVignette}
               </p>
-              <div className="mt-8 flex items-center text-slate-400 gap-2">
+              <div className="mt-8 flex items-center text-slate-400 dark:text-slate-500 gap-2">
                 <RotateCcw className="w-4 h-4" />
                 <span className="text-sm">Click para ver diagnóstico</span>
               </div>
@@ -61,14 +61,14 @@ export const FlashcardsView: React.FC = () => {
       </div>
 
       <div className="flex items-center gap-4">
-        <button onClick={handlePrev} className="p-3 bg-white border border-slate-200 rounded-full hover:bg-slate-50 transition-colors shadow-sm">
-          <ChevronLeft className="w-6 h-6 text-slate-600" />
+        <button onClick={handlePrev} className="p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
+          <ChevronLeft className="w-6 h-6 text-slate-600 dark:text-slate-300" />
         </button>
-        <span className="text-sm font-semibold text-slate-500">
+        <span className="text-sm font-semibold text-slate-500 dark:text-slate-400">
           {currentIndex + 1} / {QUESTIONS_DATA.length}
         </span>
-        <button onClick={handleNext} className="p-3 bg-white border border-slate-200 rounded-full hover:bg-slate-50 transition-colors shadow-sm">
-          <ChevronRight className="w-6 h-6 text-slate-600" />
+        <button onClick={handleNext} className="p-3 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-full hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shadow-sm">
+          <ChevronRight className="w-6 h-6 text-slate-600 dark:text-slate-300" />
         </button>
       </div>
     </div>
