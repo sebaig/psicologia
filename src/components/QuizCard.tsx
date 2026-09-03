@@ -83,12 +83,12 @@ export const QuizCard: React.FC<QuizCardProps> = ({
 
         {/* Clinical Vignette (if present) */}
         {question.clinicalVignette && (
-          <div className="mb-6 p-4 sm:p-5 rounded-lg bg-slate-50 border-l-4 border-indigo-500 border border-slate-200 text-slate-800 text-sm sm:text-base leading-relaxed font-sans">
-            <div className="flex items-center gap-2 text-indigo-700 font-bold text-xs uppercase tracking-wider mb-2">
+          <div className="mb-6 p-4 sm:p-5 rounded-lg bg-slate-50 dark:bg-slate-800 border-l-4 border-indigo-500 border border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200 text-sm sm:text-base leading-relaxed font-sans">
+            <div className="flex items-center gap-2 text-indigo-700 dark:text-indigo-300 font-bold text-xs uppercase tracking-wider mb-2">
               <Stethoscope className="w-4 h-4" />
               <span>Historia Clínica & Examen Psicopatológico</span>
             </div>
-            <p className="italic text-slate-700">
+            <p className="italic text-slate-700 dark:text-slate-300">
               "{question.clinicalVignette}"
             </p>
           </div>
@@ -96,7 +96,7 @@ export const QuizCard: React.FC<QuizCardProps> = ({
 
         {/* Direct Question Prompt */}
         <div className="mb-6">
-          <p className="text-sm sm:text-base font-semibold text-slate-900 leading-snug">
+          <p className="text-sm sm:text-base font-semibold text-slate-900 dark:text-slate-100 leading-snug">
             {question.question}
           </p>
         </div>
@@ -114,17 +114,17 @@ export const QuizCard: React.FC<QuizCardProps> = ({
                   key={option.id}
                   id={`opt-${question.id}-${option.id}`}
                   onClick={() => onSelectOption(option.id)}
-                  className="p-4 border-2 border-slate-100 rounded-lg flex items-center gap-4 hover:border-slate-200 cursor-pointer transition-colors bg-white group"
+                  className="p-4 border-2 border-slate-100 dark:border-slate-700 rounded-lg flex items-center gap-4 hover:border-slate-200 dark:hover:border-slate-600 cursor-pointer transition-colors bg-white dark:bg-slate-900 group"
                 >
-                  <div className="w-6 h-6 rounded-full border border-slate-300 flex items-center justify-center text-xs font-bold text-slate-700 group-hover:border-indigo-400 group-hover:text-indigo-600 shrink-0 transition-colors">
+                  <div className="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-600 flex items-center justify-center text-xs font-bold text-slate-700 dark:text-slate-300 group-hover:border-indigo-400 dark:group-hover:border-indigo-500 group-hover:text-indigo-600 dark:group-hover:text-indigo-400 shrink-0 transition-colors">
                     {letter}
                   </div>
                   <div className="flex-1">
-                    <p className="text-slate-700 text-sm sm:text-base font-normal group-hover:text-slate-900 leading-snug">
+                    <p className="text-slate-700 dark:text-slate-300 text-sm sm:text-base font-normal group-hover:text-slate-900 dark:group-hover:text-slate-100 leading-snug">
                       {option.text}
                     </p>
                     {option.subtext && (
-                      <p className="text-xs text-slate-400 mt-0.5">
+                      <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5">
                         {option.subtext}
                       </p>
                     )}
@@ -140,17 +140,17 @@ export const QuizCard: React.FC<QuizCardProps> = ({
                 <div
                   key={option.id}
                   id={`opt-${question.id}-${option.id}`}
-                  className="p-4 border-2 border-indigo-500 bg-indigo-50 rounded-lg flex items-center gap-4 cursor-default relative"
+                  className="p-4 border-2 border-indigo-500 bg-indigo-50 dark:bg-indigo-950/50 rounded-lg flex items-center gap-4 cursor-default relative"
                 >
                   <div className="w-6 h-6 rounded-full bg-indigo-500 text-white flex items-center justify-center text-xs font-bold shrink-0">
                     {letter}
                   </div>
                   <div className="flex-1 pr-8">
-                    <p className="text-indigo-900 font-medium text-sm sm:text-base leading-snug">
+                    <p className="text-indigo-900 dark:text-indigo-100 font-medium text-sm sm:text-base leading-snug">
                       {option.text}
                     </p>
                   </div>
-                  <div className="absolute right-4 top-4 text-indigo-600">
+                  <div className="absolute right-4 top-4 text-indigo-600 dark:text-indigo-400">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                 </div>
@@ -163,17 +163,17 @@ export const QuizCard: React.FC<QuizCardProps> = ({
                 <div
                   key={option.id}
                   id={`opt-${question.id}-${option.id}`}
-                  className="p-4 border-2 border-rose-400 bg-rose-50 rounded-lg flex items-center gap-4 cursor-default relative"
+                  className="p-4 border-2 border-rose-400 bg-rose-50 dark:bg-rose-950/50 rounded-lg flex items-center gap-4 cursor-default relative"
                 >
                   <div className="w-6 h-6 rounded-full bg-rose-600 text-white flex items-center justify-center text-xs font-bold shrink-0">
                     {letter}
                   </div>
                   <div className="flex-1 pr-8">
-                    <p className="text-rose-950 font-medium text-sm sm:text-base leading-snug">
+                    <p className="text-rose-950 dark:text-rose-100 font-medium text-sm sm:text-base leading-snug">
                       {option.text}
                     </p>
                   </div>
-                  <div className="absolute right-4 top-4 text-rose-600">
+                  <div className="absolute right-4 top-4 text-rose-600 dark:text-rose-400">
                     <XCircle className="w-6 h-6" />
                   </div>
                 </div>
@@ -186,17 +186,17 @@ export const QuizCard: React.FC<QuizCardProps> = ({
                 <div
                   key={option.id}
                   id={`opt-${question.id}-${option.id}`}
-                  className="p-4 border-2 border-emerald-500 bg-emerald-50/70 rounded-lg flex items-center gap-4 cursor-default relative"
+                  className="p-4 border-2 border-emerald-500 bg-emerald-50/70 dark:bg-emerald-950/50 rounded-lg flex items-center gap-4 cursor-default relative"
                 >
                   <div className="w-6 h-6 rounded-full bg-emerald-600 text-white flex items-center justify-center text-xs font-bold shrink-0">
                     {letter}
                   </div>
                   <div className="flex-1 pr-8">
-                    <p className="text-emerald-950 font-medium text-sm sm:text-base leading-snug">
+                    <p className="text-emerald-950 dark:text-emerald-100 font-medium text-sm sm:text-base leading-snug">
                       {option.text}
                     </p>
                   </div>
-                  <div className="absolute right-4 top-4 text-emerald-600">
+                  <div className="absolute right-4 top-4 text-emerald-600 dark:text-emerald-400">
                     <CheckCircle2 className="w-6 h-6" />
                   </div>
                 </div>
@@ -208,12 +208,12 @@ export const QuizCard: React.FC<QuizCardProps> = ({
               <div
                 key={option.id}
                 id={`opt-${question.id}-${option.id}`}
-                className="p-4 border-2 border-slate-100 rounded-lg flex items-center gap-4 opacity-50 cursor-not-allowed bg-slate-50/50"
+                className="p-4 border-2 border-slate-100 dark:border-slate-800 rounded-lg flex items-center gap-4 opacity-50 cursor-not-allowed bg-slate-50/50 dark:bg-slate-900/50"
               >
-                <div className="w-6 h-6 rounded-full border border-slate-300 flex items-center justify-center text-xs font-bold text-slate-400 shrink-0">
+                <div className="w-6 h-6 rounded-full border border-slate-300 dark:border-slate-700 flex items-center justify-center text-xs font-bold text-slate-400 dark:text-slate-600 shrink-0">
                   {letter}
                 </div>
-                <p className="text-slate-600 text-sm sm:text-base leading-snug">
+                <p className="text-slate-600 dark:text-slate-400 text-sm sm:text-base leading-snug">
                   {option.text}
                 </p>
               </div>
@@ -234,12 +234,12 @@ export const QuizCard: React.FC<QuizCardProps> = ({
     >
       {isAnswered && userAnswer ? (
         /* Split Workstation Layout on Desktop (Grid 12 cols: 7 / 5) */
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[580px]">
-          <section className="lg:col-span-7 p-6 sm:p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-slate-200 bg-white">
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm overflow-hidden grid grid-cols-1 lg:grid-cols-12 min-h-[580px]">
+          <section className="lg:col-span-7 p-6 sm:p-8 lg:p-10 border-b lg:border-b-0 lg:border-r border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900">
             {renderQuestionSection()}
           </section>
 
-          <aside className="lg:col-span-5 bg-slate-50 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
+          <aside className="lg:col-span-5 bg-slate-50 dark:bg-slate-950 p-6 sm:p-8 flex flex-col justify-between overflow-y-auto">
             <FeedbackPanel
               question={question}
               userAnswer={userAnswer}
@@ -252,7 +252,7 @@ export const QuizCard: React.FC<QuizCardProps> = ({
         </div>
       ) : (
         /* Focused Question Canvas when answering */
-        <div className="bg-white rounded-xl border border-slate-200 shadow-sm p-6 sm:p-10">
+        <div className="bg-white dark:bg-slate-900 rounded-xl border border-slate-200 dark:border-slate-800 shadow-sm p-6 sm:p-10">
           {renderQuestionSection()}
         </div>
       )}
