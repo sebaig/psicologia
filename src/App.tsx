@@ -8,8 +8,8 @@ import { PrivacyPolicyModal } from './components/PrivacyPolicyModal';
 import { LegalNoticeModal } from './components/LegalNoticeModal';
 import { ContactModal } from './components/ContactModal';
 import { AboutModal } from './components/AboutModal';
-import { AdSenseReviewModal } from './components/AdSenseReviewModal';
 import { StudyGuidesView } from './components/StudyGuidesView';
+import { FlashcardsView } from './components/FlashcardsView';
 import { QUESTIONS_DATA, CATEGORIES_CONFIG } from './data/questions';
 import { CategoryId, UserAnswer, Question } from './types';
 import { 
@@ -43,7 +43,6 @@ export default function App() {
   const [isLegalOpen, setIsLegalOpen] = useState<boolean>(false);
   const [isContactOpen, setIsContactOpen] = useState<boolean>(false);
   const [isAboutOpen, setIsAboutOpen] = useState<boolean>(false);
-  const [isAdSenseReviewOpen, setIsAdSenseReviewOpen] = useState<boolean>(false);
 
   const [bookmarkedIds, setBookmarkedIds] = useState<string[]>(() => {
     try {
@@ -159,7 +158,6 @@ export default function App() {
         isLegalOpen || 
         isContactOpen || 
         isAboutOpen || 
-        isAdSenseReviewOpen ||
         (e.target as HTMLElement).tagName === 'INPUT' ||
         (e.target as HTMLElement).tagName === 'TEXTAREA'
       ) return;
@@ -190,8 +188,7 @@ export default function App() {
     isPrivacyOpen, 
     isLegalOpen, 
     isContactOpen, 
-    isAboutOpen, 
-    isAdSenseReviewOpen
+    isAboutOpen
   ]);
 
   const totalAnsweredCount = Object.keys(userAnswers).length;
@@ -207,7 +204,6 @@ export default function App() {
         selectedCategory={selectedCategory}
         onSelectCategory={handleCategoryChange}
         onOpenGlossary={() => setIsGlossaryOpen(true)}
-        onOpenAdSenseReview={() => setIsAdSenseReviewOpen(true)}
         onResetQuiz={handleRestartAll}
         totalAnswered={totalAnsweredCount}
         totalQuestions={activeQuestions.length}
@@ -226,6 +222,9 @@ export default function App() {
             }}
             onOpenGlossary={() => setIsGlossaryOpen(true)}
           />
+        ) : activeView === 'flashcards' ? (
+          /* Flashcards Mode */
+          <FlashcardsView />
         ) : !isCompleted ? (
           <div>
             {/* Category Didactic Guidance Banner (Solves bare menus and empty spaces) */}
@@ -400,18 +399,18 @@ export default function App() {
             </div>
 
             {/* Column 3: Trust, Transparency & Legal Pages */}
-            <div className="space-y-2.5">
+            <div className="space-y-2.5 md:col-span-2">
               <h4 className="font-bold text-white uppercase tracking-wider text-[11px]">
                 Páginas Legales y Confianza
               </h4>
-              <ul className="space-y-1.5 text-[11px]">
+              <ul className="grid grid-cols-2 gap-x-4 gap-y-1.5 text-[11px]">
                 <li>
                   <button
                     onClick={() => setIsPrivacyOpen(true)}
                     className="hover:text-indigo-400 transition-colors cursor-pointer flex items-center gap-1.5 text-left"
                   >
                     <ShieldCheck className="w-3 h-3 text-emerald-400 shrink-0" />
-                    Política de Privacidad y Cookies
+                    Política de Privacidad
                   </button>
                 </li>
                 <li>
@@ -420,7 +419,7 @@ export default function App() {
                     className="hover:text-indigo-400 transition-colors cursor-pointer flex items-center gap-1.5 text-left"
                   >
                     <Scale className="w-3 h-3 text-amber-400 shrink-0" />
-                    Aviso Legal y Descargo Médico
+                    Aviso Legal
                   </button>
                 </li>
                 <li>
@@ -429,7 +428,7 @@ export default function App() {
                     className="hover:text-indigo-400 transition-colors cursor-pointer flex items-center gap-1.5 text-left"
                   >
                     <Mail className="w-3 h-3 text-indigo-400 shrink-0" />
-                    Contacto y Soporte Editorial
+                    Contacto
                   </button>
                 </li>
                 <li>
@@ -438,27 +437,10 @@ export default function App() {
                     className="hover:text-indigo-400 transition-colors cursor-pointer flex items-center gap-1.5 text-left"
                   >
                     <GraduationCap className="w-3 h-3 text-purple-400 shrink-0" />
-                    Comité Académico & Fuentes
+                    Fuentes Académicas
                   </button>
                 </li>
               </ul>
-            </div>
-
-            {/* Column 4: Compliance & AdSense Review Helper */}
-            <div className="space-y-3">
-              <h4 className="font-bold text-white uppercase tracking-wider text-[11px]">
-                Auditoría de Calidad AdSense
-              </h4>
-              <p className="text-slate-400 text-[11px] leading-relaxed">
-                Sitio auditado conforme a las políticas del programa de socios de Google AdSense para sitios web de contenido educativo.
-              </p>
-              <button
-                onClick={() => setIsAdSenseReviewOpen(true)}
-                className="w-full py-2 px-3 bg-blue-600 hover:bg-blue-700 text-white rounded font-semibold text-[11px] transition-colors flex items-center justify-center gap-1.5 cursor-pointer shadow-xs"
-              >
-                <FileCheck className="w-3.5 h-3.5" />
-                Ver Checklist de los 5 Pasos
-              </button>
             </div>
           </div>
 
@@ -502,18 +484,6 @@ export default function App() {
       <AboutModal
         isOpen={isAboutOpen}
         onClose={() => setIsAboutOpen(false)}
-      />
-
-      <AdSenseReviewModal
-        isOpen={isAdSenseReviewOpen}
-        onClose={() => setIsAdSenseReviewOpen(false)}
-        onOpenPrivacy={() => setIsPrivacyOpen(true)}
-        onOpenLegal={() => setIsLegalOpen(true)}
-        onOpenContact={() => setIsContactOpen(true)}
-        onOpenGuides={() => {
-          setActiveView('guides');
-          window.scrollTo({ top: 0, behavior: 'smooth' });
-        }}
       />
     </div>
   );

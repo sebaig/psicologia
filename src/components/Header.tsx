@@ -1,9 +1,9 @@
 import React from 'react';
-import { BookOpen, RefreshCw, Brain, CheckCircle2, FileCheck, BookCheck, ShieldCheck } from 'lucide-react';
+import { BookOpen, RefreshCw, Brain, CheckCircle2, FileCheck, BookCheck, ShieldCheck, Sparkles } from 'lucide-react';
 import { CategoryId } from '../types';
 import { CATEGORIES_CONFIG } from '../data/questions';
 
-export type ActiveAppView = 'quiz' | 'guides';
+export type ActiveAppView = 'quiz' | 'guides' | 'flashcards';
 
 interface HeaderProps {
   activeView: ActiveAppView;
@@ -11,7 +11,6 @@ interface HeaderProps {
   selectedCategory: CategoryId;
   onSelectCategory: (cat: CategoryId) => void;
   onOpenGlossary: () => void;
-  onOpenAdSenseReview: () => void;
   onResetQuiz: () => void;
   totalAnswered: number;
   totalQuestions: number;
@@ -25,7 +24,6 @@ export const Header: React.FC<HeaderProps> = ({
   selectedCategory,
   onSelectCategory,
   onOpenGlossary,
-  onOpenAdSenseReview,
   onResetQuiz,
   totalAnswered,
   totalQuestions,
@@ -65,7 +63,7 @@ export const Header: React.FC<HeaderProps> = ({
             </button>
           </div>
 
-          {/* Navigation Tabs (Simulador vs Guías de Estudio) */}
+          {/* Navigation Tabs (Simulador, Flashcards, Guías) */}
           <div className="hidden md:flex items-center p-1 bg-slate-100/90 rounded-lg border border-slate-200/80 text-xs">
             <button
               id="nav-tab-quiz"
@@ -80,6 +78,18 @@ export const Header: React.FC<HeaderProps> = ({
               Simulador de Casos
             </button>
             <button
+              id="nav-tab-flashcards"
+              onClick={() => onChangeView('flashcards')}
+              className={`px-3.5 py-1.5 rounded-md font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
+                activeView === 'flashcards'
+                  ? 'bg-white text-indigo-700 shadow-xs border border-slate-200/60'
+                  : 'text-slate-600 hover:text-slate-900 hover:bg-slate-200/50'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-indigo-600" />
+              Flashcards
+            </button>
+            <button
               id="nav-tab-guides"
               onClick={() => onChangeView('guides')}
               className={`px-3.5 py-1.5 rounded-md font-semibold transition-all cursor-pointer flex items-center gap-1.5 ${
@@ -89,10 +99,7 @@ export const Header: React.FC<HeaderProps> = ({
               }`}
             >
               <BookCheck className="w-3.5 h-3.5 text-indigo-600" />
-              Artículos y Guías Clínicas
-              <span className="px-1.5 py-0.2 bg-emerald-100 text-emerald-800 text-[9px] font-bold rounded-full">
-                Valor
-              </span>
+              Artículos
             </button>
           </div>
 
@@ -129,17 +136,6 @@ export const Header: React.FC<HeaderProps> = ({
                 <span className="lg:hidden">DSM-5</span>
               </button>
 
-              <button
-                id="btn-adsense-review"
-                onClick={onOpenAdSenseReview}
-                className="px-2.5 sm:px-3 py-1.5 text-xs font-semibold bg-blue-50 border border-blue-200 text-blue-700 hover:bg-blue-100 rounded transition-colors flex items-center gap-1.5 cursor-pointer shadow-2xs"
-                title="Centro de Verificación y Estado de Revisión AdSense"
-              >
-                <FileCheck className="w-3.5 h-3.5 text-blue-600" />
-                <span className="hidden sm:inline">Auditoría AdSense</span>
-                <span className="sm:hidden">AdSense</span>
-              </button>
-
               {activeView === 'quiz' && (
                 <button
                   id="btn-reset-quiz"
@@ -163,7 +159,15 @@ export const Header: React.FC<HeaderProps> = ({
               activeView === 'quiz' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700'
             }`}
           >
-            Simulador de Casos
+            Casos
+          </button>
+          <button
+            onClick={() => onChangeView('flashcards')}
+            className={`flex-1 py-1.5 rounded text-xs font-semibold transition-colors ${
+              activeView === 'flashcards' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700'
+            }`}
+          >
+            Flashcards
           </button>
           <button
             onClick={() => onChangeView('guides')}
@@ -171,7 +175,7 @@ export const Header: React.FC<HeaderProps> = ({
               activeView === 'guides' ? 'bg-indigo-600 text-white' : 'bg-slate-100 text-slate-700'
             }`}
           >
-            Guías Clínicas (Valor)
+            Guías
           </button>
         </div>
 
